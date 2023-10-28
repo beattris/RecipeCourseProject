@@ -13,5 +13,10 @@ export class RecipeListComponent {
       'this is a test recipe',
       'https://upload.wikimedia.org/wikipedia/commons/3/39/Recipe.jpg'
     ),
+    new Recipe(
+      'A second test recipe',
+      'this is a second test recipe',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToUueiyPEC9mhgwLaIcGRIgzh9dFMXunv3Dg&usqp=CAU'
+    ),
   ];
 }
