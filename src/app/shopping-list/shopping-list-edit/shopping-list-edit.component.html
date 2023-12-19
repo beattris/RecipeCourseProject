@@ -10,6 +10,7 @@
             id="name"
             name="name"
             ngModel
+            required
           />
         </div>
         <div class="col-sm-2 form-group">
@@ -20,6 +21,8 @@
             class="form-control"
             name="amount"
             ngModel
+            required
+            pattern="^[1-9]+[0-9]*$"
           />
         </div>
         <div class="row">
@@ -27,7 +30,8 @@
             <button
               class="btn btn-success"
               type="submit"
-              style="margin-right: 4px"
+              style="margin-right: 4px" 
+              [disabled]="!f.valid"
             >
               Add
             </button>
