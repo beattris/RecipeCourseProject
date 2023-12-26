@@ -39,10 +39,12 @@
               class="btn btn-danger"
               type="button"
               style="margin-right: 4px"
+              (click)="onDelete()"
+              *ngIf="editMode"
             >
               Delete
             </button>
-            <button class="btn btn-primary" type="button">Clear</button>
+            <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
           </div>
         </div>
       </div>
