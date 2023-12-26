@@ -7,6 +7,7 @@
             type="submit"
             class="btn btn-primary"
             style="margin-right: 4px"
+            [disabled]="!recipeForm.valid"
           >
             Save
           </button>
@@ -81,10 +82,16 @@
               <button class="btn btn-danger">X</button>
             </div>
           </div>
-          <hr>
+          <hr />
           <div class="row">
             <div class="col-xs-12">
-              <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddIngredient()"
+              >
+                Add Ingredient
+              </button>
             </div>
           </div>
         </div>
