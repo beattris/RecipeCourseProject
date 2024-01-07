@@ -32,7 +32,12 @@ export class AuthService {
       .pipe(
         catchError(this.handleError),
         tap((resData) => {
-          this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+          this.handleAuthentication(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
         })
       );
   }
@@ -47,29 +52,57 @@ export class AuthService {
           returnSecureToken: true,
         }
       )
-      .pipe(catchError(this.handleError), 
+      .pipe(
+        catchError(this.handleError),
         tap((resData) => {
-          this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+          this.handleAuthentication(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
         })
       );
   }
 
-  logout(){
+  autoLogin() {
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+
+    if (loadedUser.token){
+      this.user.next(loadedUser);
+    }
+  }
+
+  logout() {
     this.user.next(null);
     this.router.navigate(['/auth']);
   }
 
-  private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
-    const expirationDate = new Date(
-      new Date().getTime() + expiresIn * 1000
-    );
-    const user = new User(
-     email,
-     userId,
-     token,
-     expirationDate
-    );
+  private handleAuthentication(
+    email: string,
+    userId: string,
+    token: string,
+    expiresIn: number
+  ) {
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
