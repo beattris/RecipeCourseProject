@@ -5,7 +5,7 @@
     </div> -->
     <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
     <div *ngIf="isLoading" style="text-align: center;">
-      <app-loading-spinner></app-loading-spinner>
+      <app-loading-spinner></app-loading-spinner> 
     </div>
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
       <div class="form-group">
