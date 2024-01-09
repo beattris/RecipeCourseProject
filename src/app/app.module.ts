@@ -8,9 +8,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -21,8 +19,6 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AuthModule,
-    ShoppingListModule,
     SharedModule
   ],
   providers: [
